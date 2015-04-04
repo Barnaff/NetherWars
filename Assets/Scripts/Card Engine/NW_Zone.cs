@@ -76,11 +76,56 @@ public class NW_Zone {
 
 	public NW_Card DrawFromZone()
 	{
+
+		// TODO: lose if no more cards
 		NW_Card card = _cardsInZone[0];
 		_cardsInZone.RemoveAt(0);
 
 
 		return card;
+	}
+
+	public void RemoveCardFromZone(NW_Card i_Card)
+	{
+		this.RemoveCardsFromZone (new List<NW_Card>(){i_Card});
+	}
+
+	public void RemoveCardsFromZone(List<NW_Card> i_cards)
+	{
+		if (i_cards != null)
+		{
+			foreach (NW_Card card in i_cards)
+			{
+				if (this._cardsInZone.Contains(card))
+				{
+					this._cardsInZone.Remove(card);
+				}
+			}
+		}
+	}
+
+	public NW_Card RevealTopCard()
+	{
+		NW_Card result = null;
+		List<NW_Card> topCard = this.RevealTopCards(1);
+		if (topCard != null && topCard.Count > 0)
+		{
+			result = topCard[0];
+		}
+		return result;
+	}
+
+	public List<NW_Card> RevealTopCards(int i_NumberOfCardsToReveal)
+	{
+		List<NW_Card> topCards = new List<NW_Card>();
+		for (int i = 1; i <= i_NumberOfCardsToReveal; i++)
+		{
+			if (this._cardsInZone.Count >= i)
+			{
+				topCards.Add(this._cardsInZone[i - 1]);
+			}
+		}
+		return topCards;
 	}
 
 	#endregion
