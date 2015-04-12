@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Card xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CardName>vfd</CardName>
+  <CardId>Empty</CardId>
+  <CastingCost>0</CastingCost>
+  <Thrashold>fvd</Thrashold>
+  <Power>0</Power>
+  <Toughness>0</Toughness>
+</Card>
