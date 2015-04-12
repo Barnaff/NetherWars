@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{202B3687-6C4C-D13C-28FD-0AA4688C349B}") = "NetherWars", "Assembly-CSharp.csproj", "{EC17CBD9-104A-684F-B3D4-103472C65D57}"
 EndProject
+Project("{202B3687-6C4C-D13C-28FD-0AA4688C349B}") = "NetherWars", "Assembly-CSharp-Editor.csproj", "{33A45B5D-BB83-1B84-1AD3-FF1B9F6F112F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{EC17CBD9-104A-684F-B3D4-103472C65D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC17CBD9-104A-684F-B3D4-103472C65D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC17CBD9-104A-684F-B3D4-103472C65D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A45B5D-BB83-1B84-1AD3-FF1B9F6F112F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A45B5D-BB83-1B84-1AD3-FF1B9F6F112F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A45B5D-BB83-1B84-1AD3-FF1B9F6F112F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A45B5D-BB83-1B84-1AD3-FF1B9F6F112F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-		GlobalSection(MonoDevelopProperties) = preSolution
+																					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
