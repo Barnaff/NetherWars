@@ -46,4 +46,22 @@ public class NW_Event  {
 		Card = card;
 		Data = data;
 	}
+
+
+	public static NW_Event Draw(NW_Player player, NW_Card card)
+	{
+		Hashtable data = new Hashtable();
+		data.Add(NW_Event.NW_EVENT_KEY_PLAYER, player);
+		NW_Event eventObject = new NW_Event(NW_EventType.DrawCard, card, data);
+		return eventObject;
+	}
+
+	public static NW_Event CardChangeZone(NW_Card card, NW_Zone fromZone, NW_Card toZone)
+	{
+		Hashtable data = new Hashtable();
+		data.Add(NW_Event.NW_EVENT_KEY_FROM_ZONE, fromZone);
+		data.Add(NW_Event.NW_EVENT_KEY_TO_ZONE, toZone);
+		NW_Event eventObject = new NW_Event(NW_EventType.DrawCard, card, data);
+		return eventObject;
+	}
 }

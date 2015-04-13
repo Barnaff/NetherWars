@@ -12,16 +12,13 @@ public class NW_Player : IPlayer  {
 
 	public int LifeCount;
 
-	/// <summary>
-	/// the plyer deck list, contains id's of the player current deck.
-	/// </summary>
-	public string[] _deckList;
-
 	#endregion
 
 
 	#region Private Properties
-	
+
+	private List<NW_Card> _deck;
+
 	private NW_Zone _library;
 	private NW_Zone _hand;
 	private NW_Zone _battleField;
@@ -33,9 +30,12 @@ public class NW_Player : IPlayer  {
 
 	#region Initialization
 
-	public NW_Player()
+	public NW_Player(string playerName, int playerId, int startingLife, List<NW_Card> deck)
 	{
-
+		PlayerName = playerName;
+		PlayerId = playerId;
+		LifeCount = startingLife; 
+		_deck = deck;
 	}
 
 	#endregion
@@ -70,7 +70,11 @@ public class NW_Player : IPlayer  {
 	{
 		NW_Card card = _library.DrawFromZone();
 
+		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.Draw(this, card));
+
 		_hand.AddCard(card);
+
+		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand);
 	}
 
 	#endregion
