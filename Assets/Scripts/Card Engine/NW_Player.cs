@@ -2,19 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class NW_Player  {
+public class NW_Player : IPlayer  {
 
 	#region Public Properties
-
+	
 	public int PlayerId;
+
 	public string PlayerName;
+
 	public int LifeCount;
+
+	/// <summary>
+	/// the plyer deck list, contains id's of the player current deck.
+	/// </summary>
+	public string[] _deckList;
 
 	#endregion
 
 
 	#region Private Properties
-
+	
 	private NW_Zone _library;
 	private NW_Zone _hand;
 	private NW_Zone _battleField;
