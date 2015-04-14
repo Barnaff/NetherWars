@@ -74,7 +74,7 @@ public class NW_Player : IPlayer  {
 
 		_hand.AddCard(card);
 
-		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand);
+		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand));
 	}
 
 	#endregion

@@ -91,7 +91,7 @@ public class NW_GameManager : IGameManager  {
 		List<NW_Card> playerDeck = NW_CardsLoader.LoadCardList(playerCards);
 		_player = new NW_Player(playerName, 1, 30, playerDeck);
 		List<NW_Card> opponentDeck = NW_CardsLoader.LoadCardList(opponentCards);
-		_opponent = new NW_Playeroppo(opponentName, 2, 30, opponentDeck);
+		_opponent = new NW_Player(opponentName, 2, 30, opponentDeck);
 
 		_player.ShuffleLibrary();
 		_player.Draw(7);

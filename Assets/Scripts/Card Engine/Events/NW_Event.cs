@@ -56,7 +56,7 @@ public class NW_Event  {
 		return eventObject;
 	}
 
-	public static NW_Event CardChangeZone(NW_Card card, NW_Zone fromZone, NW_Card toZone)
+	public static NW_Event CardChangeZone(NW_Card card, NW_Zone fromZone, NW_Zone toZone)
 	{
 		Hashtable data = new Hashtable();
 		data.Add(NW_Event.NW_EVENT_KEY_FROM_ZONE, fromZone);
