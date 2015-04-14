@@ -60,6 +60,8 @@ public class NW_Card  {
 	[XmlElement("Toughness")]
 	public int Toughness;
 
-
+	[XmlArray("ResourceGain")]
+	[XmlArrayItem("ResourceColor")]
+	public List<NW_Color> ResourceGain;
 
 }
