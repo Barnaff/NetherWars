@@ -8,7 +8,7 @@ public class NW_Player : IPlayer  {
 	
 	public int PlayerId;
 
-	public string PlayerName;
+
 
 	public int LifeCount;
 
@@ -22,8 +22,10 @@ public class NW_Player : IPlayer  {
 	private NW_Zone _library;
 	private NW_Zone _hand;
 	private NW_Zone _battleField;
-	private NW_Zone _resourcePool;
+	private NW_ResourcePool _resourcePool;
 	private NW_Zone _graveyard;
+
+	private string _playerName;
 
 	#endregion
 
@@ -32,10 +34,19 @@ public class NW_Player : IPlayer  {
 
 	public NW_Player(string playerName, int playerId, int startingLife, List<NW_Card> deck)
 	{
-		PlayerName = playerName;
+		_playerName = playerName;
 		PlayerId = playerId;
 		LifeCount = startingLife; 
 		_deck = deck;
+
+		_library = new NW_Zone();
+		_library.SetCardsList(_deck);
+
+		_hand = new NW_Zone();
+		_battleField = new NW_Zone();
+		_resourcePool = new NW_ResourcePool();
+		_graveyard = new NW_Zone();
+		 
 	}
 
 	#endregion
@@ -61,6 +72,49 @@ public class NW_Player : IPlayer  {
 		_library.Shuffle();
 	}
 
+	public string PlayerName
+	{
+		get
+		{
+			return _playerName;
+		}
+	}
+
+	public IResourcePool ResourcePool
+	{
+		get
+		{
+			return _resourcePool;
+		}
+	}
+
+	public NW_Zone Hand
+	{
+		get
+		{
+			return _hand;
+		}
+	}
+
+	public NW_Zone Battlefield
+	{
+		get
+		{
+			return _battleField;
+		}
+	}
+
+	public void PutCardInResource(NW_Card card)
+	{
+		if (_hand.Cards.Contains(card))
+		{
+			_hand.RemoveCardFromZone(card);
+			_resourcePool.AddCard(card);
+
+			NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _hand, _resourcePool));
+		}
+	}
+
 	#endregion
 
 
@@ -75,6 +129,16 @@ public class NW_Player : IPlayer  {
 		_hand.AddCard(card);
 
 		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand));
+	}
+
+	#endregion
+
+
+	#region Iplayer Implementation
+
+	public void StartTurn()
+	{
+		_resourcePool.ResetPool();
 	}
 
 	#endregion

@@ -52,9 +52,22 @@ public class NW_Zone {
 
 	#region Public
 
+	public virtual List<NW_Card> Cards
+	{
+		get
+		{
+			return _cardsInZone;
+		}
+	}
+
 	public virtual void AddCard(NW_Card card)
 	{
 		_cardsInZone.Add(card);
+	}
+
+	public virtual void SetCardsList(List<NW_Card> cards)
+	{
+		_cardsInZone = cards;
 	}
 
 	public virtual void Shuffle()

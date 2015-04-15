@@ -8,21 +8,32 @@ public enum NW_EventType
 	PlayCard,
 	DrawCard,
 	CardChangeZone,
+	StartTurn,
 }
 
 public class NW_Event  {
-	
+
+	#region Public Fields
+
 	public NW_EventType Type;
 	public NW_Card Card;
 	public Hashtable Data;
 
+	#endregion
+
+	#region Events Keys
 
 	/*  Event keys for the data Hashtable  */
-	public static readonly string NW_EVENT_KEY_NUMBER_OF_CARDS;
-	public static readonly string NW_EVENT_KEY_FROM_ZONE;
-	public static readonly string NW_EVENT_KEY_TO_ZONE;
-	public static readonly string NW_EVENT_KEY_PLAYER;
-	public static readonly string NW_EVENT_KEY_PLAY_AS_RESOURCER;
+	public static readonly string NW_EVENT_KEY_NUMBER_OF_CARDS = "NumberOfCards";
+	public static readonly string NW_EVENT_KEY_FROM_ZONE = "fromZone";
+	public static readonly string NW_EVENT_KEY_TO_ZONE = "toZone";
+	public static readonly string NW_EVENT_KEY_PLAYER = "player";
+	public static readonly string NW_EVENT_KEY_PLAY_AS_RESOURCE = "asResource";
+
+	#endregion
+
+
+	#region Initialize Event
 
 	public NW_Event()
 	{
@@ -47,8 +58,11 @@ public class NW_Event  {
 		Data = data;
 	}
 
+	#endregion
 
-	public static NW_Event Draw(NW_Player player, NW_Card card)
+	#region Static Events Constructors
+
+	public static NW_Event Draw(IPlayer player, NW_Card card)
 	{
 		Hashtable data = new Hashtable();
 		data.Add(NW_Event.NW_EVENT_KEY_PLAYER, player);
@@ -61,7 +75,17 @@ public class NW_Event  {
 		Hashtable data = new Hashtable();
 		data.Add(NW_Event.NW_EVENT_KEY_FROM_ZONE, fromZone);
 		data.Add(NW_Event.NW_EVENT_KEY_TO_ZONE, toZone);
-		NW_Event eventObject = new NW_Event(NW_EventType.DrawCard, card, data);
+		NW_Event eventObject = new NW_Event(NW_EventType.CardChangeZone, card, data);
 		return eventObject;
 	}
+
+	public static NW_Event StartTurn(IPlayer player)
+	{
+		Hashtable data = new Hashtable();
+		data.Add(NW_Event.NW_EVENT_KEY_PLAYER, player);
+		NW_Event eventObject = new NW_Event(NW_EventType.StartTurn, null, data);
+		return eventObject;
+	}
+
+	#endregion
 }

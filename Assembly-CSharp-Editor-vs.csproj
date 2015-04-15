@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\Card Editor\CardsEditor.cs" />
+     <None Include="Assets\Resources\Cards\1.xml" />
      <None Include="Assets\Resources\Cards\555.xml" />
      <None Include="Assets\Resources\Cards\111.xml" />
      <None Include="Assets\Resources\Cards\Empty.xml" />

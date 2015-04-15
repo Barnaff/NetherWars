@@ -6,10 +6,10 @@ public class NW_GameManager : IGameManager  {
 
 	#region Private Properties
 
-	private NW_Player _player;
-	private NW_Player _opponent;
-
-	private NW_Player _currentPlayerTurn;
+	private IPlayer _player;
+	private IPlayer _opponent;
+	private IPlayer _currentPlayerTurn;
+	private bool _isGameStarted;
 
 	#endregion
 
@@ -26,7 +26,7 @@ public class NW_GameManager : IGameManager  {
 
 	#region Public 
 
-	public void StartGame(NW_Player player, NW_Player opponent)
+	public void StartGame(IPlayer player, IPlayer opponent)
 	{
 		_player = player;
 		_opponent = opponent;
@@ -44,9 +44,16 @@ public class NW_GameManager : IGameManager  {
 
 	#region Private
 
-	private void LoadCards()
+	private void StartTurn(IPlayer player)
 	{
-
+		_currentPlayerTurn = player;
+		_currentPlayerTurn.StartTurn();
+		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.StartTurn(_currentPlayerTurn));
+		if (_isGameStarted)
+		{
+			_currentPlayerTurn.Draw();
+		}
+		_isGameStarted = true;
 	}
 
 	#endregion
@@ -78,11 +85,19 @@ public class NW_GameManager : IGameManager  {
 		}
 	}
 
-	public IPlayer CurrentTurn 
+	public IPlayer CurrentPLayerTurn
 	{ 
 		get
 		{
 			return _currentPlayerTurn;	
+		}
+	}
+
+	public bool IsGameStarted 
+	{
+		get 
+		{
+			return _isGameStarted;
 		}
 	}
 
@@ -102,9 +117,25 @@ public class NW_GameManager : IGameManager  {
 
 	public void EndTurn()
 	{
+		NW_Player nextPlayer = null;
+		if (_currentPlayerTurn == _player)
+		{
+			_currentPlayerTurn = _opponent;
+		}
+		else if (_currentPlayerTurn == _opponent)
+		{
+			_currentPlayerTurn = _player;
+		}
 
+		// start the new turn
+		StartTurn(_currentPlayerTurn);
 	}
 	
+	public void SetFirstPlayer(IPlayer player)
+	{
+		_currentPlayerTurn = player;
+		StartTurn(_currentPlayerTurn);
+	}
 
 	public bool CanPlayCard(IPlayer player, NW_Card card)
 	{
@@ -123,12 +154,15 @@ public class NW_GameManager : IGameManager  {
 
 	public void PlayCard(IPlayer player, NW_Card card)
 	{
-
+		player.ResourcePool.PayForCard(card);
+		player.Hand.RemoveCardFromZone(card);
+		player.Battlefield.AddCard(card);
+		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, player.Hand, player.Battlefield));
 	}
 	
 	public void PutCardInResource(IPlayer player, NW_Card card)
 	{
-
+		player.PutCardInResource(card);
 	}
 	
 	public void Attck(NW_Card source, NW_Card target)

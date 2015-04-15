@@ -28,7 +28,12 @@ public interface IGameManager  {
 	/// Gets the current player turn.
 	/// </summary>
 	/// <value>The current turn.</value>
-	IPlayer CurrentTurn { get; }
+	IPlayer CurrentPLayerTurn { get; }
+
+	/// <summary>
+	/// checks if the engine has started the game, the game is starting when "startTurn" is called for the first time
+	/// </summary>
+	bool IsGameStarted { get; }
 
 	#endregion
 
@@ -49,6 +54,12 @@ public interface IGameManager  {
 	/// Ends the turn.
 	/// </summary>
 	void EndTurn();
+
+	/// <summary>
+	/// Sets the first player.
+	/// </summary>
+	/// <param name="player">Player.</param>
+	void SetFirstPlayer(IPlayer player);
 
 	#endregion
 

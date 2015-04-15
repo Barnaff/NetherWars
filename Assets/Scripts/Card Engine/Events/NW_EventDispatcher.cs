@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,9 +6,10 @@ public class NW_EventDispatcher : IEventDispatcher  {
 
 	#region Events
 
-	public event OnPlayCardDelegate OnPlayCard;
-	public event OnCardDrawDelegate OnCardDraw;
-	public event OnCardChangeZoneDelegate OnCardChangeZone;
+	public event PlayCardDelegate OnPlayCard;
+	public event CardDrawDelegate OnCardDraw;
+	public event CardChangeZoneDelegate OnCardChangeZone;
+	public event StartTurnDelegate OnStartTurn;
 
 	#endregion
 
@@ -49,7 +50,7 @@ public class NW_EventDispatcher : IEventDispatcher  {
 		case NW_EventType.PlayCard:
 		{
 			NW_Player player = (NW_Player)eventObject.Data[NW_Event.NW_EVENT_KEY_PLAYER];
-			bool playAsResource = (bool)eventObject.Data[NW_Event.NW_EVENT_KEY_PLAY_AS_RESOURCER];
+			bool playAsResource = (bool)eventObject.Data[NW_Event.NW_EVENT_KEY_PLAY_AS_RESOURCE];
 			PlayCard(player, eventObject.Card, playAsResource);
 			break;
 		}
@@ -66,12 +67,25 @@ public class NW_EventDispatcher : IEventDispatcher  {
 			CardChangeZone(eventObject.Card, fromZone, toZone);
 			break;
 		}
+		case NW_EventType.StartTurn:
+		{
+			NW_Player player = (NW_Player)eventObject.Data[NW_Event.NW_EVENT_KEY_PLAYER];
+			StartTurn(player);
+			break;
+		}
 		default:
 		{
 			Debug.LogError("ERROR - Unrecognized Event Type!");
 			break;
 		}
 		}
+
+		string eventString = "[" + eventObject.Type.ToString() + "] ";
+		foreach (string key in eventObject.Data.Keys)
+		{
+			eventString += key + ": " + eventObject.Data[key].ToString() + ", ";
+		}
+		Debug.Log(eventString);
 	}
 
 	#endregion
@@ -100,6 +114,14 @@ public class NW_EventDispatcher : IEventDispatcher  {
 		if (OnCardChangeZone != null)
 		{
 			OnCardChangeZone(card, fromZone, toZone);
+		}
+	}
+
+	private void StartTurn(NW_Player player)
+	{
+		if (OnStartTurn != null)
+		{
+			OnStartTurn(player);
 		}
 	}
 

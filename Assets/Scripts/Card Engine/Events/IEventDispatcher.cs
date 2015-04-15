@@ -4,9 +4,10 @@ using System;
 
 #region Delegates
 
-public delegate void OnPlayCardDelegate(IPlayer player, NW_Card card, bool playAsResource = false);
-public delegate void OnCardDrawDelegate(IPlayer player, NW_Card card);
-public delegate void OnCardChangeZoneDelegate(NW_Card card, NW_Zone fromZOne, NW_Zone toZone);
+public delegate void PlayCardDelegate(IPlayer player, NW_Card card, bool playAsResource = false);
+public delegate void CardDrawDelegate(IPlayer player, NW_Card card);
+public delegate void CardChangeZoneDelegate(NW_Card card, NW_Zone fromZOne, NW_Zone toZone);
+public delegate void StartTurnDelegate(IPlayer player);
 
 #endregion
 
@@ -14,9 +15,10 @@ public interface IEventDispatcher  {
 
 	#region Events
 
-	event OnPlayCardDelegate OnPlayCard;
-	event OnCardDrawDelegate OnCardDraw;
-	event OnCardChangeZoneDelegate OnCardChangeZone;
+	event PlayCardDelegate OnPlayCard;
+	event CardDrawDelegate OnCardDraw;
+	event CardChangeZoneDelegate OnCardChangeZone;
+	event StartTurnDelegate OnStartTurn;
 
 	#endregion
 }

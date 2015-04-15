@@ -7,7 +7,9 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 
 	private Hashtable _thrasholdCount;
 
-	private int _currentMana;
+	private int _totalMana;
+
+	private int _manaUsedThisTurn;
 
 	#endregion
 
@@ -22,8 +24,10 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 
 	public override void AddCard (NW_Card card)
 	{
+		Debug.Log("add card to resource: " + card.CardName);
 		base.AddCard (card);
 		UpdateResourcePool();
+		_totalMana++;
 	}
 
 	public override void RemoveCardsFromZone (System.Collections.Generic.List<NW_Card> i_cards)
@@ -39,17 +43,19 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 
 	public void ResetPool()
 	{
-		_currentMana = _cardsInZone.Count;
+		_totalMana = _cardsInZone.Count;
+		_manaUsedThisTurn = 0;
 	}
 	
 	public bool CanPayForCard(NW_Card card)
 	{
-		return false;
+		return true;
 	}
 	
 	public void PayForCard(NW_Card card)
 	{
-
+		_manaUsedThisTurn += card.CastingCost;
+		UpdateResourcePool();
 	}
 
 	public int ThrasholdForColor(NW_Color color)
@@ -65,7 +71,7 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 	{ 
 		get
 		{
-			return _currentMana;
+			return _totalMana - _manaUsedThisTurn;
 		}
 	}
 
@@ -79,11 +85,12 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 		_thrasholdCount.Clear();
 		foreach (NW_Card card in _cardsInZone)
 		{
-			foreach (NW_Color color in card.ResourceGain)
+			foreach (NW_Color color in card.CardColors)
 			{
+				Debug.Log("add color: " + color.ToString() + " to resources thrashold");
 				if (_thrasholdCount.Contains(color))
 				{
-					_thrasholdCount.Add(color, (int)_thrasholdCount[color] + 1);
+					_thrasholdCount[color] = (int)_thrasholdCount[color] + 1;
 				}
 				else
 				{
