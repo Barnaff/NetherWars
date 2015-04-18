@@ -53,12 +53,15 @@
      <Compile Include="Assets\Scripts\Card Engine\NW_Player.cs" />
      <Compile Include="Assets\Scripts\Card Engine\NW_Zone.cs" />
      <Compile Include="Assets\Scripts\Gameplay\CardController.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerAbstract.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerBattlefield.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerExile.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerGraveyard.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerHand.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerLibrary.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerResource.cs" />
      <Compile Include="Assets\Scripts\Gameplay\GameplayController.cs" />
-     <None Include="Assets\Resources\Cards\555.xml" />
-     <None Include="Assets\Resources\Cards\111.xml" />
      <None Include="Assets\Resources\Cards\Empty.xml" />
-     <None Include="Assets\Resources\Cards\222.xml" />
-     <None Include="Assets\Resources\Cards\2.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
