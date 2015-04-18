@@ -62,4 +62,22 @@ public class NW_CardsLoader  {
 		string filePath = Path.Combine(dir + NW_CardsLoader.CARDS_RESOURCE_PATH, cardId + NW_CardsLoader.CARDS_RESOURCE_EXTENSION);
 		return NW_CardsLoader.LoadCardFile(filePath);
 	}
+
+	public static List<NW_Card> LoadCardList(string[] cardsList)
+	{
+		List<NW_Card> loadedCards = new List<NW_Card>();
+		foreach (string cardId in cardsList)
+		{
+			NW_Card card = NW_CardsLoader.LoadCard(cardId);
+			if (card != null)
+			{
+				loadedCards.Add(card);
+			}
+			else
+			{
+				Debug.LogError("ERROR loading card " + cardId);
+			}
+		}
+		return loadedCards;
+	}
 }

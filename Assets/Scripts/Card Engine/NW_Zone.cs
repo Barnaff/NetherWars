@@ -24,7 +24,7 @@ public class NW_Zone {
 
 	#region Private Properties
 
-	private List<NW_Card> _cardsInZone = new List<NW_Card>();
+	protected List<NW_Card> _cardsInZone = new List<NW_Card>();
 
 	#endregion
 
@@ -52,12 +52,25 @@ public class NW_Zone {
 
 	#region Public
 
-	public void AddCard(NW_Card card)
+	public virtual List<NW_Card> Cards
+	{
+		get
+		{
+			return _cardsInZone;
+		}
+	}
+
+	public virtual void AddCard(NW_Card card)
 	{
 		_cardsInZone.Add(card);
 	}
 
-	public void Shuffle()
+	public virtual void SetCardsList(List<NW_Card> cards)
+	{
+		_cardsInZone = cards;
+	}
+
+	public virtual void Shuffle()
 	{
 		System.Security.Cryptography.RNGCryptoServiceProvider provider = new System.Security.Cryptography.RNGCryptoServiceProvider();
 		int n = _cardsInZone.Count;
@@ -74,23 +87,20 @@ public class NW_Zone {
 		}
 	}
 
-	public NW_Card DrawFromZone()
+	public virtual NW_Card DrawFromZone()
 	{
-
 		// TODO: lose if no more cards
 		NW_Card card = _cardsInZone[0];
-		_cardsInZone.RemoveAt(0);
-
-
+		RemoveCardFromZone(card);
 		return card;
 	}
 
-	public void RemoveCardFromZone(NW_Card i_Card)
+	public virtual void RemoveCardFromZone(NW_Card i_Card)
 	{
 		this.RemoveCardsFromZone (new List<NW_Card>(){i_Card});
 	}
 
-	public void RemoveCardsFromZone(List<NW_Card> i_cards)
+	public virtual void RemoveCardsFromZone(List<NW_Card> i_cards)
 	{
 		if (i_cards != null)
 		{
@@ -104,7 +114,7 @@ public class NW_Zone {
 		}
 	}
 
-	public NW_Card RevealTopCard()
+	public virtual NW_Card RevealTopCard()
 	{
 		NW_Card result = null;
 		List<NW_Card> topCard = this.RevealTopCards(1);
@@ -115,7 +125,7 @@ public class NW_Zone {
 		return result;
 	}
 
-	public List<NW_Card> RevealTopCards(int i_NumberOfCardsToReveal)
+	public virtual List<NW_Card> RevealTopCards(int i_NumberOfCardsToReveal)
 	{
 		List<NW_Card> topCards = new List<NW_Card>();
 		for (int i = 1; i <= i_NumberOfCardsToReveal; i++)

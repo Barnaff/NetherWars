@@ -222,3 +222,5 @@ pip-log.txt
 
 Library/
 Temp/
+*.csproj
+*.csproj

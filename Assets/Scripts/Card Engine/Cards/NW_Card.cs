@@ -60,6 +60,25 @@ public class NW_Card  {
 	[XmlElement("Toughness")]
 	public int Toughness;
 
+	[XmlArray("ResourceGain")]
+	[XmlArrayItem("ResourceColor")]
+	public List<NW_Color> ResourceGain;
 
+
+	public IPlayer Controller;
+	public int CurrentPower;
+	public int CurrentToughness;
+
+
+	public void InitCardForBattlefield()
+	{
+		CurrentPower = Power;
+		CurrentToughness = Toughness;
+	}
+
+	public void SetController(IPlayer controller)
+	{
+		Controller = controller;
+	}
 
 }
