@@ -39,15 +39,13 @@ public class PlayerController : MonoBehaviour
 	{
 		if (i_Player.PlayerId == this.m_nwPlayer.PlayerId)
 		{
-
 		}
 	}
 
 	private void onCardChangeZone(NW_Card i_Card, NW_Zone i_FromZOne, NW_Zone i_ToZone)
 	{
-        print("yo");
 		this.removeCardFromZoneIfNeeded(i_Card, i_FromZOne);
-		this.addCardAddZoneIfNeeded(i_Card, i_ToZone);
+		this.addCardToZoneIfNeeded(i_Card, i_ToZone);
 	}
 
 	private void initZones()
@@ -79,8 +77,16 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void addCardAddZoneIfNeeded(NW_Card i_Card, NW_Zone i_AddZone)
+	private void addCardToZoneIfNeeded(NW_Card i_Card, NW_Zone i_ToZone)
 	{
+        foreach (ZoneControllerAbstract zone in this.m_zonesList)
+        {
+            if (zone.Zone == i_ToZone)
+            {
+                zone.AddCard(i_Card);
+                break;
+            }
+        }
 	}
 }
 

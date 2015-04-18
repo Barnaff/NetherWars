@@ -34,11 +34,6 @@ public class NW_GameManager : IGameManager  {
 		
 	}
 
-	public void StartGame()
-	{
-
-	}
-
 	#endregion
 
 
@@ -111,13 +106,16 @@ public class NW_GameManager : IGameManager  {
 		}
 	}
 
-	public void StartGame(string playerName, string[] playerCards, string opponentName, string[] opponentCards)
-	{
-		List<NW_Card> playerDeck = NW_CardsLoader.LoadCardList(playerCards);
-		_player = new NW_Player(playerName, 1, 30, playerDeck) as IPlayer;
-		List<NW_Card> opponentDeck = NW_CardsLoader.LoadCardList(opponentCards);
-		_opponent = new NW_Player(opponentName, 2, 30, opponentDeck) as IPlayer;
+    public void InitGame(string playerName, string[] playerCards, string opponentName, string[] opponentCards)
+    {
+        List<NW_Card> playerDeck = NW_CardsLoader.LoadCardList(playerCards);
+        _player = new NW_Player(playerName, 1, 30, playerDeck) as IPlayer;
+        List<NW_Card> opponentDeck = NW_CardsLoader.LoadCardList(opponentCards);
+        _opponent = new NW_Player(opponentName, 2, 30, opponentDeck) as IPlayer;
+    }
 
+	public void StartGame()
+	{
 		_player.ShuffleLibrary();
 		_player.Draw(7);
 

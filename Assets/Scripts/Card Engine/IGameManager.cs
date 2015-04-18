@@ -41,6 +41,8 @@ public interface IGameManager  {
 
 	#region Game Managment
 
+    void InitGame(string playerName, string[] playerCards, string opponentName, string[] opponentCards);
+
 	/// <summary>
 	/// Starts the game.
 	/// </summary>
@@ -48,7 +50,7 @@ public interface IGameManager  {
 	/// <param name="playerCards">Player cards.</param>
 	/// <param name="opponentName">Opponent name.</param>
 	/// <param name="opponentCards">Opponent cards.</param>
-	void StartGame(string playerName, string[] playerCards, string opponentName, string[] opponentCards);
+	void StartGame();
 	// TODO: change start to get objects with defenition for each player
 
 	/// <summary>

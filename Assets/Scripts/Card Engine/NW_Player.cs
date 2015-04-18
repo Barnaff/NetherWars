@@ -82,7 +82,7 @@ public class NW_Player : IPlayer  {
 	{
 		get
 		{
-			return PlayerId;
+			return _playerId;
 		}
 	}
 

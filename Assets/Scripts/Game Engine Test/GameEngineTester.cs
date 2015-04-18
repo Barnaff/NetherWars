@@ -29,7 +29,8 @@ public class GameEngineTester : MonoBehaviour {
 			{
 				_gameManager = new NW_GameManager();
 				string[] deck = new string[20] {"1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"};
-				_gameManager.StartGame("player 1 (player)",deck , "player 2 (opponent)", deck);
+				_gameManager.InitGame("player 1 (player)",deck , "player 2 (opponent)", deck);
+                _gameManager.StartGame();
 
 				_player = _gameManager.Player;
 				_opponent = _gameManager.Opponent;
