@@ -13,7 +13,8 @@ public enum ZoneType
 	Exile,
 }
 
-public class NW_Zone {
+public class NW_Zone
+{
 
 	#region Public Properties
 

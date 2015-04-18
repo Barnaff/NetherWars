@@ -5,9 +5,7 @@ using System.Collections.Generic;
 public class NW_Player : IPlayer  {
 
 	#region Public Properties
-	
-	public int PlayerId;
-	
+
 	public int LifeCount;
 
 	#endregion
@@ -24,6 +22,7 @@ public class NW_Player : IPlayer  {
 	private NW_Zone _graveyard;
 
 	private string _playerName;
+	private int _playerId;
 
 	#endregion
 
@@ -33,7 +32,7 @@ public class NW_Player : IPlayer  {
 	public NW_Player(string playerName, int playerId, int startingLife, List<NW_Card> deck)
 	{
 		_playerName = playerName;
-		PlayerId = playerId;
+		_playerId = playerId;
 		LifeCount = startingLife; 
 		_deck = deck;
 
@@ -75,6 +74,14 @@ public class NW_Player : IPlayer  {
 		get
 		{
 			return _playerName;
+		}
+	}
+
+	public int PlayerId
+	{
+		get
+		{
+			return PlayerId;
 		}
 	}
 

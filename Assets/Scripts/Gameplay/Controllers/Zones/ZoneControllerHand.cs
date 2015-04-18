@@ -1,15 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class ZoneControllerHand : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+﻿
+public class ZoneControllerHand : ZoneControllerAbstract
+{
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

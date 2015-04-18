@@ -5,6 +5,8 @@ public interface IPlayer   {
 
 	string PlayerName { get; }
 
+	int PlayerId { get; }
+
 	void StartTurn();
 
 	void Draw();

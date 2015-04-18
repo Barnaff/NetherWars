@@ -48,11 +48,20 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Card Engine\Cards\NW_Card.cs" />
      <Compile Include="Assets\Scripts\Card Engine\Cards\NW_CardsLoader.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Events\IEventDispatcher.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Events\NW_Event.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Events\NW_EventDispatcher.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\IGameManager.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\IPlayer.cs" />
      <Compile Include="Assets\Scripts\Card Engine\NW_CardFactory.cs" />
      <Compile Include="Assets\Scripts\Card Engine\NW_GameManager.cs" />
      <Compile Include="Assets\Scripts\Card Engine\NW_Player.cs" />
      <Compile Include="Assets\Scripts\Card Engine\NW_Zone.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\IResourcePool.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\NW_ResourcePool.cs" />
+     <Compile Include="Assets\Scripts\Game Engine Test\GameEngineTester.cs" />
      <Compile Include="Assets\Scripts\Gameplay\CardController.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerAbstract.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerBattlefield.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerExile.cs" />
@@ -61,6 +70,7 @@
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerLibrary.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerResource.cs" />
      <Compile Include="Assets\Scripts\Gameplay\GameplayController.cs" />
+     <None Include="Assets\Resources\Cards\1.xml" />
      <None Include="Assets\Resources\Cards\Empty.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
