@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
 	private void onCardChangeZone(NW_Card i_Card, NW_Zone i_FromZOne, NW_Zone i_ToZone)
 	{
+        print("yo");
 		this.removeCardFromZoneIfNeeded(i_Card, i_FromZOne);
 		this.addCardAddZoneIfNeeded(i_Card, i_ToZone);
 	}
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
 		{
             if (zoneController.Zone == i_FromZone)
             {
-
+                break;
             }
 		}
 	}

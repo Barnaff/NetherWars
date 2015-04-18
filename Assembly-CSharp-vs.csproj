@@ -67,6 +67,8 @@
      <Compile Include="Assets\Scripts\Card Engine\Zones\NW_ResourcePool.cs" />
      <Compile Include="Assets\Scripts\Game Engine Test\GameEngineTester.cs" />
      <Compile Include="Assets\Scripts\Gameplay\CardController.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\CardFactoryController.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Controllers\CardPoolController.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerAbstract.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerBattlefield.cs" />

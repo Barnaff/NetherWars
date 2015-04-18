@@ -21,4 +21,9 @@ public class ZoneControllerAbstract : MonoBehaviour
 	{
 		this.m_zone = i_Zone;
 	}
+
+    public void RemoveCard(NW_Card i_Card)
+    {
+
+    }
 }
