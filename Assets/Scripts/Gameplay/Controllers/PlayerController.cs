@@ -71,6 +71,10 @@ public class PlayerController : MonoBehaviour
 	{
 		foreach (ZoneControllerAbstract zoneController in this.m_zonesList)
 		{
+            if (zoneController.Zone == i_FromZone)
+            {
+
+            }
 		}
 	}
 

@@ -9,6 +9,14 @@ public class ZoneControllerAbstract : MonoBehaviour
 	[SerializeField]
 	private ZoneType m_zoneType;
 
+    public NW_Zone Zone
+    {
+        get
+        {
+            return this.m_zone;
+        }
+    }
+
 	public void Init(NW_Zone i_Zone)
 	{
 		this.m_zone = i_Zone;
