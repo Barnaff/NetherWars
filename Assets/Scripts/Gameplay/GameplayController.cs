@@ -13,7 +13,7 @@ public class GameplayController : MonoBehaviour
 		string[] deck = new string[20] {"1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"};
 		this.m_gameManager.StartGame("player 1 (player)",deck , "player 2 (opponent)", deck);
 
-		this.mr_PlayerController.Init (this.m_gameManager.Player);
+		this.mr_PlayerController.Init(this.m_gameManager.Player);
 	}
 	
 	// Update is called once per frame

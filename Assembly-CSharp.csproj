@@ -58,6 +58,12 @@
      <Compile Include="Assets\Scripts\Card Engine\NW_Player.cs" />
      <Compile Include="Assets\Scripts\Card Engine\NW_Zone.cs" />
      <Compile Include="Assets\Scripts\Card Engine\Zones\IResourcePool.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\IZone.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\NW_Battlefield.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\NW_Exile.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\NW_Graveyard.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\NW_Hand.cs" />
+     <Compile Include="Assets\Scripts\Card Engine\Zones\NW_Library.cs" />
      <Compile Include="Assets\Scripts\Card Engine\Zones\NW_ResourcePool.cs" />
      <Compile Include="Assets\Scripts\Game Engine Test\GameEngineTester.cs" />
      <Compile Include="Assets\Scripts\Gameplay\CardController.cs" />
