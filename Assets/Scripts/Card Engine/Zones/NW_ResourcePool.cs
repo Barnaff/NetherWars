@@ -49,7 +49,11 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 	
 	public bool CanPayForCard(NW_Card card)
 	{
-		return true;
+		if (_totalMana - _manaUsedThisTurn > card.CastingCost)
+		{
+			return true;
+		}
+		return false;
 	}
 	
 	public void PayForCard(NW_Card card)

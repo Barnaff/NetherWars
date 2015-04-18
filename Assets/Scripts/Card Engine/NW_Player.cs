@@ -7,9 +7,7 @@ public class NW_Player : IPlayer  {
 	#region Public Properties
 	
 	public int PlayerId;
-
-
-
+	
 	public int LifeCount;
 
 	#endregion
@@ -129,6 +127,8 @@ public class NW_Player : IPlayer  {
 		_hand.AddCard(card);
 
 		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand));
+
+		card.SetController(this);
 	}
 
 	#endregion

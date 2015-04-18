@@ -56,6 +56,16 @@ public class NW_GameManager : IGameManager  {
 		_isGameStarted = true;
 	}
 
+	private bool CanAttackCard(NW_Card attacker, NW_Card card)
+	{
+		return true;
+	}
+
+	private void InflictDamage(NW_Card target, int damage)
+	{
+		target.CurrentToughness -= damage;
+	}
+
 	#endregion
 
 
@@ -152,6 +162,35 @@ public class NW_GameManager : IGameManager  {
 		return true;
 	}
 
+	public List<NW_Card> GetValidTargetsForCardAttack(NW_Card card)
+	{
+		List<NW_Card> targets = new List<NW_Card>();
+
+		NW_Zone validBattlefield = null;
+		if (card.Controller == _player)
+		{
+			validBattlefield = _opponent.Battlefield;
+		}
+		else if (card.Controller == _opponent)
+		{
+			validBattlefield = _player.Battlefield;
+		}
+		else
+		{
+			Debug.LogError("ERROR - cannot find target for uncontrolled card");
+		}
+
+		foreach (NW_Card cardInBattlefield in validBattlefield.Cards)
+		{
+			if (cardInBattlefield.CardTypes.Contains(NW_CardType.Creature))
+			{
+				targets.Add(cardInBattlefield);
+			}
+		}
+
+		return targets;
+	}
+
 	public void PlayCard(IPlayer player, NW_Card card)
 	{
 		player.ResourcePool.PayForCard(card);
@@ -167,7 +206,11 @@ public class NW_GameManager : IGameManager  {
 	
 	public void Attck(NW_Card source, NW_Card target)
 	{
-
+		if (CanAttackCard(source, target))
+		{
+			InflictDamage(target, source.CurrentPower);
+			InflictDamage(source, target.CurrentPower);
+		}
 	}
 	
 	public void Attck(NW_Card source, IPlayer target)

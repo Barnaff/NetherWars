@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public interface IGameManager  {
 
@@ -89,6 +90,12 @@ public interface IGameManager  {
 	/// <param name="player">Player.</param>
 	bool CanPlayResourceThisTurn(IPlayer player);
 
+	/// <summary>
+	/// Gets valid targets that a card on the battlesfield can attack.
+	/// </summary>
+	/// <returns>The valid targets for card attack.</returns>
+	/// <param name="card">Card.</param>
+	List<NW_Card> GetValidTargetsForCardAttack(NW_Card card);
 
 	#endregion
 
