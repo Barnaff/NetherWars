@@ -13,12 +13,12 @@ public enum ZoneType
 	Exile,
 }
 
-public class NW_Zone
+public class NW_Zone : IZone
 {
 
-	#region Public Properties
+	#region Protected Properties
 
-	public ZoneType Type;
+	protected ZoneType _zoneType;
 
 	#endregion
 
@@ -39,12 +39,12 @@ public class NW_Zone
 
 	public NW_Zone(ZoneType zone)
 	{
-		Type = zone;
+		_zoneType = zone;
 	}
 
 	public NW_Zone(ZoneType zone, List<NW_Card> cardsInZone)
 	{
-		Type = zone;
+		_zoneType = zone;
 		_cardsInZone = cardsInZone;
 	}
 
@@ -52,6 +52,14 @@ public class NW_Zone
 
 
 	#region Public
+
+	public ZoneType Type
+	{
+		get
+		{
+			return _zoneType;
+		}
+	}
 
 	public virtual List<NW_Card> Cards
 	{

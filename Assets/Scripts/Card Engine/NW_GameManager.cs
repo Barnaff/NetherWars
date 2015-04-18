@@ -127,18 +127,21 @@ public class NW_GameManager : IGameManager  {
 
 	public void EndTurn()
 	{
-		NW_Player nextPlayer = null;
+		IPlayer nextPlayer = null;
 		if (_currentPlayerTurn == _player)
 		{
-			_currentPlayerTurn = _opponent;
+			nextPlayer = _opponent;
 		}
 		else if (_currentPlayerTurn == _opponent)
 		{
-			_currentPlayerTurn = _player;
+			nextPlayer = _player;
 		}
 
 		// start the new turn
-		StartTurn(_currentPlayerTurn);
+		if (nextPlayer != null)
+		{
+			StartTurn(nextPlayer);
+		}
 	}
 	
 	public void SetFirstPlayer(IPlayer player)

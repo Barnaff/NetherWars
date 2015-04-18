@@ -15,11 +15,12 @@ public class NW_Player : IPlayer  {
 
 	private List<NW_Card> _deck;
 
-	private NW_Zone _library;
-	private NW_Zone _hand;
-	private NW_Zone _battleField;
+	private NW_Library _library;
+	private NW_Hand _hand;
+	private NW_Battlefield _battleField;
 	private NW_ResourcePool _resourcePool;
-	private NW_Zone _graveyard;
+	private NW_Graveyard _graveyard;
+	private NW_Exile _exile;
 
 	private string _playerName;
 	private int _playerId;
@@ -36,14 +37,14 @@ public class NW_Player : IPlayer  {
 		LifeCount = startingLife; 
 		_deck = deck;
 
-		_library = new NW_Zone();
+		_library = new NW_Library();
 		_library.SetCardsList(_deck);
 
-		_hand = new NW_Zone();
-		_battleField = new NW_Zone();
+		_hand = new NW_Hand();
+		_battleField = new NW_Battlefield();
 		_resourcePool = new NW_ResourcePool();
-		_graveyard = new NW_Zone();
-		 
+		_graveyard = new NW_Graveyard();
+		_exile = new NW_Exile();
 	}
 
 	#endregion
@@ -106,6 +107,30 @@ public class NW_Player : IPlayer  {
 		get
 		{
 			return _battleField;
+		}
+	}
+
+	public NW_Zone Library 
+	{
+		get
+		{
+			return _library;
+		}
+	}
+
+	public NW_Zone Graveyard
+	{
+		get 
+		{
+			return _graveyard;
+		}
+	}
+
+	public NW_Zone Exile 
+	{
+		get 
+		{
+			return _exile;
 		}
 	}
 

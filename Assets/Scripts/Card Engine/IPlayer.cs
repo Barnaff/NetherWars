@@ -21,6 +21,12 @@ public interface IPlayer   {
 
 	NW_Zone Battlefield { get; }
 
+	NW_Zone Library { get; }
+
+	NW_Zone Graveyard { get; }
+
+	NW_Zone Exile { get; }
+
 	void PutCardInResource(NW_Card card);
 
 

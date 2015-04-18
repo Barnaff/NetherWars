@@ -15,7 +15,7 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 
 	public NW_ResourcePool()
 	{
-		Type = ZoneType.ResourcePool;
+		_zoneType = ZoneType.ResourcePool;
 		_thrasholdCount = new Hashtable();
 	}
 
