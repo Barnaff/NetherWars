@@ -28,6 +28,8 @@ public enum NW_Color
 [XmlRoot("Card")]
 public class NW_Card  {
 
+	#region XML Fields
+
 	[XmlElement("CardName")]
 	public string CardName;
 	
@@ -64,11 +66,22 @@ public class NW_Card  {
 	[XmlArrayItem("ResourceColor")]
 	public List<NW_Color> ResourceGain;
 
+	#endregion
 
+
+	#region Dynamic Public Properties
+
+	[XmlIgnore]
 	public IPlayer Controller;
+	[XmlIgnore]
 	public int CurrentPower;
+	[XmlIgnore]
 	public int CurrentToughness;
 
+	#endregion
+
+
+	#region Public
 
 	public void InitCardForBattlefield()
 	{
@@ -80,5 +93,8 @@ public class NW_Card  {
 	{
 		Controller = controller;
 	}
+
+	#endregion
+
 
 }
