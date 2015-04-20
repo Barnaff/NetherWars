@@ -42,28 +42,50 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void onCardChangeZone(NW_Card i_Card, NW_Zone i_FromZOne, NW_Zone i_ToZone)
+	private void onCardChangeZone(NW_Card i_Card, NW_Zone i_FromZone, NW_Zone i_ToZone)
 	{
-		this.removeCardFromZoneIfNeeded(i_Card, i_FromZOne);
+		this.removeCardFromZoneIfNeeded(i_Card, i_FromZone);
 		this.addCardToZoneIfNeeded(i_Card, i_ToZone);
 	}
 
 	private void initZones()
 	{
-		this.m_zoneControllerResource.Init((NW_Zone)this.m_nwPlayer.ResourcePool);
-		this.m_zoneControllerBattlefield.Init(this.m_nwPlayer.Battlefield);
-		this.m_zoneControllerGraveyard.Init(this.m_nwPlayer.Graveyard);
-		this.m_zoneControllerHand.Init(this.m_nwPlayer.Hand);
-		this.m_zoneControllerLibrary.Init(this.m_nwPlayer.Library);
-		this.m_zoneControllerExile.Init(this.m_nwPlayer.Exile);
-
 		this.m_zonesList = new List<ZoneControllerAbstract>();
-		this.m_zonesList.Add(this.m_zoneControllerResource);
-		this.m_zonesList.Add(this.m_zoneControllerBattlefield);
-		this.m_zonesList.Add(this.m_zoneControllerGraveyard);
-		this.m_zonesList.Add(this.m_zoneControllerHand);
-		this.m_zonesList.Add(this.m_zoneControllerLibrary);
-		this.m_zonesList.Add(this.m_zoneControllerExile);
+		if (this.m_zoneControllerResource != null)
+		{
+			this.m_zoneControllerResource.Init((NW_Zone)this.m_nwPlayer.ResourcePool);
+			this.m_zonesList.Add(this.m_zoneControllerResource);
+		}
+
+		if (this.m_zoneControllerBattlefield != null)
+		{
+			this.m_zoneControllerBattlefield.Init(this.m_nwPlayer.Battlefield);
+			this.m_zonesList.Add(this.m_zoneControllerBattlefield);
+		}
+
+		if (this.m_zoneControllerGraveyard != null)
+		{
+			this.m_zoneControllerGraveyard.Init(this.m_nwPlayer.Graveyard);
+			this.m_zonesList.Add(this.m_zoneControllerGraveyard);
+		}
+
+		if (this.m_zoneControllerHand != null)
+		{
+			this.m_zoneControllerHand.Init(this.m_nwPlayer.Hand);
+			this.m_zonesList.Add(this.m_zoneControllerHand);
+		}
+
+		if (this.m_zoneControllerLibrary != null)
+		{
+			this.m_zoneControllerLibrary.Init(this.m_nwPlayer.Library);
+			this.m_zonesList.Add(this.m_zoneControllerLibrary);
+		}
+
+		if (this.m_zoneControllerExile != null)
+		{
+			this.m_zoneControllerExile.Init(this.m_nwPlayer.Exile);
+			this.m_zonesList.Add(this.m_zoneControllerExile);
+		}
 	}
 
 	private void removeCardFromZoneIfNeeded(NW_Card i_Card, NW_Zone i_FromZone)

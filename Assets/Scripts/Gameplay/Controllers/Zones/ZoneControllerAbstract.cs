@@ -30,6 +30,8 @@ public class ZoneControllerAbstract : MonoBehaviour
 
     public void AddCard(NW_Card i_Card)
     {
-        this.m_CardsInZone.Add(CardPoolController.Instance.CardControllerFromCard(i_Card));
+		CardController cardController = CardPoolController.Instance.CardControllerFromCard(i_Card);
+		this.m_CardsInZone.Add(cardController);
+		cardController.gameObject.transform.SetParent(this.gameObject.transform);
     }
 }

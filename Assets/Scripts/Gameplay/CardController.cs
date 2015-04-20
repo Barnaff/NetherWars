@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class CardController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class CardController : MonoBehaviour
 {
     [SerializeField]
     private Text mr_cardName;
@@ -39,25 +39,4 @@ public class CardController : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         this.mr_toughness.text = this.m_cardData.Toughness.ToString();
     }
 
-	#region Drag/Drop
-
-    public void OnBeginDrag(PointerEventData i_EventData)
-    {
-
-    }
-
-    public void OnDrag(PointerEventData i_EventData)
-    {
-        Vector3 newPosition = this.m_transform.position;
-        newPosition.x += i_EventData.delta.x / 50;
-        newPosition.y += i_EventData.delta.y / 50;
-        this.m_transform.position = newPosition;
-    }
-
-    public void OnEndDrag(PointerEventData i_EventData)
-    {
-
-    }
-
-	#endregion
 }
