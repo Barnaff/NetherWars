@@ -4,6 +4,16 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
 
+    [SerializeField]
+    private ZoneType mr_zoneType;
+
+    private NW_Zone _zone;
+
+    public void Init(NW_Zone zone)
+    {
+        _zone = zone;
+    }
+
 	public void OnPointerEnter(PointerEventData eventData) {
 		//Debug.Log("OnPointerEnter");
 		if(eventData.pointerDrag == null)
@@ -31,6 +41,7 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 		Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
 		if(d != null) {
+            d.zoneDestination = _zone;
 			d.parentToReturnTo = this.transform;
 		}
 

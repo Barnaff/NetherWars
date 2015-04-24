@@ -9,6 +9,14 @@ public class ZoneControllerAbstract : MonoBehaviour
 	[SerializeField]
 	private ZoneType m_zoneType;
 
+    public List<CardController> CardsInZone
+    {
+        get
+        {
+            return this.m_CardsInZone;
+        }
+    }
+
     public NW_Zone Zone
     {
         get

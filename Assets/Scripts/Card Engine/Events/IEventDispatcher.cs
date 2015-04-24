@@ -8,6 +8,7 @@ public delegate void PlayCardDelegate(IPlayer player, NW_Card card, bool playAsR
 public delegate void CardDrawDelegate(IPlayer player, NW_Card card);
 public delegate void CardChangeZoneDelegate(NW_Card card, NW_Zone fromZOne, NW_Zone toZone);
 public delegate void StartTurnDelegate(IPlayer player);
+public delegate void CardAttemptToChangeZoneDelegate(NW_Card card, NW_Zone fromZone, NW_Zone toZone);
 
 #endregion
 
@@ -19,6 +20,7 @@ public interface IEventDispatcher  {
 	event CardDrawDelegate OnCardDraw;
 	event CardChangeZoneDelegate OnCardChangeZone;
 	event StartTurnDelegate OnStartTurn;
+    event CardAttemptToChangeZoneDelegate OnCardAttemptToChangeZone;
 
 	#endregion
 }

@@ -10,6 +10,7 @@ public class NW_EventDispatcher : IEventDispatcher  {
 	public event CardDrawDelegate OnCardDraw;
 	public event CardChangeZoneDelegate OnCardChangeZone;
 	public event StartTurnDelegate OnStartTurn;
+    public event CardAttemptToChangeZoneDelegate OnCardAttemptToChangeZone;
 
 	#endregion
 
@@ -73,6 +74,13 @@ public class NW_EventDispatcher : IEventDispatcher  {
 			StartTurn(player);
 			break;
 		}
+        case NW_EventType.CardAttemptToChangeZone:
+        {
+            NW_Zone fromZone = (NW_Zone)eventObject.Data[NW_Event.NW_EVENT_KEY_FROM_ZONE];
+            NW_Zone toZone = (NW_Zone)eventObject.Data[NW_Event.NW_EVENT_KEY_TO_ZONE];
+            OnCardAttemptToChangeZone(eventObject.Card, fromZone, toZone);
+            break;
+        }
 		default:
 		{
 			Debug.LogError("ERROR - Unrecognized Event Type!");

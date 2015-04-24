@@ -4,11 +4,12 @@ using System.Collections;
 
 public enum NW_EventType
 {
-	None,
-	PlayCard,
-	DrawCard,
-	CardChangeZone,
-	StartTurn,
+    None,
+    PlayCard,
+    DrawCard,
+    CardChangeZone,
+    StartTurn,
+    CardAttemptToChangeZone
 }
 
 public class NW_Event  {
@@ -86,6 +87,15 @@ public class NW_Event  {
 		NW_Event eventObject = new NW_Event(NW_EventType.StartTurn, null, data);
 		return eventObject;
 	}
+
+    public static NW_Event CardAttemptToChangeZone(NW_Card card, NW_Zone fromZone, NW_Zone toZone)
+    {
+        Hashtable data = new Hashtable();
+        data.Add(NW_Event.NW_EVENT_KEY_FROM_ZONE, fromZone);
+        data.Add(NW_Event.NW_EVENT_KEY_TO_ZONE, toZone);
+        NW_Event eventObject = new NW_Event(NW_EventType.CardChangeZone, card, data);
+        return eventObject;
+    }
 
 	#endregion
 }

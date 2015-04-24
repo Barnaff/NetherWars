@@ -4,9 +4,13 @@ using System.Collections;
 using UnityEngine.EventSystems;
 
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-	
+
+    private NW_Card _cardData;
+
 	public Transform parentToReturnTo = null;
 	public Transform placeholderParent = null;
+    public NW_Zone zoneOrigin;
+    public NW_Zone zoneDestination;
 
 	GameObject placeholder = null;
 	
@@ -57,6 +61,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	}
 	
 	public void OnEndDrag(PointerEventData eventData) {
+        NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardAttemptToChangeZone(_cardData, zoneOrigin, zoneDestination));
 		Debug.Log ("OnEndDrag");
 		this.transform.SetParent( parentToReturnTo );
 		this.transform.SetSiblingIndex( placeholder.transform.GetSiblingIndex() );

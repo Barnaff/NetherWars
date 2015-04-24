@@ -77,6 +77,8 @@
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerHand.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerLibrary.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Controllers\Zones\ZoneControllerResource.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Draggable.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\DropZone.cs" />
      <Compile Include="Assets\Scripts\Gameplay\GameplayController.cs" />
      <None Include="Assets\Resources\Cards\1.xml" />
      <None Include="Assets\Resources\Cards\Empty.xml" />

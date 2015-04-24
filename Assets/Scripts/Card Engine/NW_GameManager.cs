@@ -116,11 +116,15 @@ public class NW_GameManager : IGameManager  {
 
 	public void StartGame()
 	{
+        this.SetFirstPlayer(_player);
+
 		_player.ShuffleLibrary();
 		_player.Draw(7);
 
 		_opponent.ShuffleLibrary();
 		_opponent.Draw(7);
+
+        this.StartTurn(_currentPlayerTurn);
 	}
 
 	public void EndTurn()
@@ -150,7 +154,7 @@ public class NW_GameManager : IGameManager  {
 
 	public bool CanPlayCard(IPlayer player, NW_Card card)
 	{
-		return true;
+        return player.ResourcePool.CanPayForCard(card);
 	}
 
 	public bool CanPayForCard(IPlayer player, NW_Card card)
@@ -160,7 +164,7 @@ public class NW_GameManager : IGameManager  {
 
 	public bool CanPlayResourceThisTurn(IPlayer player)
 	{
-		return true;
+        return player.NumberOfCardsPutAsResourceThisTurn == 0;
 	}
 
 	public List<NW_Card> GetValidTargetsForCardAttack(NW_Card card)

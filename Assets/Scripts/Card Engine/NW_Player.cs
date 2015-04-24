@@ -24,6 +24,7 @@ public class NW_Player : IPlayer  {
 
 	private string _playerName;
 	private int _playerId;
+    private int _numberOfCardsPutAsResourceThisTurn;
 
 	#endregion
 
@@ -140,6 +141,7 @@ public class NW_Player : IPlayer  {
 		{
 			_hand.RemoveCardFromZone(card);
 			_resourcePool.AddCard(card);
+            _numberOfCardsPutAsResourceThisTurn++;
 
 			NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _hand, _resourcePool));
 		}
@@ -154,13 +156,11 @@ public class NW_Player : IPlayer  {
 	{
 		NW_Card card = _library.DrawFromZone();
 
-		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.Draw(this, card));
-
 		_hand.AddCard(card);
+        card.SetController(this);
 
-		NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand));
-
-		card.SetController(this);
+        NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardChangeZone(card, _library, _hand));
+        NW_EventDispatcher.Instance().DispatchEvent(NW_Event.Draw(this, card));
 	}
 
 	#endregion
@@ -171,7 +171,16 @@ public class NW_Player : IPlayer  {
 	public void StartTurn()
 	{
 		_resourcePool.ResetPool();
+        _numberOfCardsPutAsResourceThisTurn = 0;
 	}
+
+    public int NumberOfCardsPutAsResourceThisTurn
+    {
+        get
+        {
+            return _numberOfCardsPutAsResourceThisTurn;
+        }
+    }
 
 	#endregion
 

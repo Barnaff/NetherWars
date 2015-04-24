@@ -27,6 +27,8 @@ public interface IPlayer   {
 
 	NW_Zone Exile { get; }
 
+    int NumberOfCardsPutAsResourceThisTurn { get; }
+
 	void PutCardInResource(NW_Card card);
 
 
