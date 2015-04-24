@@ -68,4 +68,9 @@ public class CardController : MonoBehaviour
         this.mr_canPlayCardIndicator.SetActive(false);
         this.mr_canPlayCardAsResourceIndicator.SetActive(false);
     }
+
+    public void SetZoneAsOrigin(NW_Zone i_Zone)
+    {
+        this.m_draggable.zoneOrigin = i_Zone;
+    }
 }

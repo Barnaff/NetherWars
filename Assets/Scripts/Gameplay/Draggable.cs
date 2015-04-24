@@ -61,6 +61,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	}
 	
 	public void OnEndDrag(PointerEventData eventData) {
+        if (_cardData == null)
+        {
+            _cardData = this.gameObject.GetComponent<CardController>().CardData;
+        }
         NW_EventDispatcher.Instance().DispatchEvent(NW_Event.CardAttemptToChangeZone(_cardData, zoneOrigin, zoneDestination));
 		Debug.Log ("OnEndDrag");
 		this.transform.SetParent( parentToReturnTo );

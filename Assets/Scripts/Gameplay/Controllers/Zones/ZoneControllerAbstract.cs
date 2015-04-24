@@ -41,5 +41,6 @@ public class ZoneControllerAbstract : MonoBehaviour
 		CardController cardController = CardPoolController.Instance.CardControllerFromCard(i_Card);
 		this.m_CardsInZone.Add(cardController);
 		cardController.gameObject.transform.SetParent(this.gameObject.transform);
+        cardController.SetZoneAsOrigin(this.Zone);
     }
 }
