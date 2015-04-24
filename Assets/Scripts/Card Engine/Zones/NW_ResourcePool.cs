@@ -11,6 +11,8 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 
 	private int _manaUsedThisTurn;
 
+	private int _numberOfResouecesPutThisTurn;
+
 	#endregion
 
 	public NW_ResourcePool()
@@ -28,6 +30,7 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 		base.AddCard (card);
 		UpdateResourcePool();
 		_totalMana++;
+		_numberOfResouecesPutThisTurn++;
 	}
 
 	public override void RemoveCardsFromZone (System.Collections.Generic.List<NW_Card> i_cards)
@@ -45,6 +48,7 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 	{
 		_totalMana = _cardsInZone.Count;
 		_manaUsedThisTurn = 0;
+		_numberOfResouecesPutThisTurn = 0;
 	}
 	
 	public bool CanPayForCard(NW_Card card)
@@ -76,6 +80,14 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 		get
 		{
 			return _totalMana - _manaUsedThisTurn;
+		}
+	}
+
+	public int NumberOfResourcesPutThisTurn
+	{
+		get
+		{
+			return _numberOfResouecesPutThisTurn;
 		}
 	}
 
