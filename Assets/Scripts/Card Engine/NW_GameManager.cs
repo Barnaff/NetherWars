@@ -116,7 +116,7 @@ public class NW_GameManager : IGameManager  {
 
 	public void StartGame()
 	{
-        this.SetFirstPlayer(_player);
+       // this.SetFirstPlayer(_player);
 
 		_player.ShuffleLibrary();
 		_player.Draw(7);
@@ -124,7 +124,7 @@ public class NW_GameManager : IGameManager  {
 		_opponent.ShuffleLibrary();
 		_opponent.Draw(7);
 
-        this.StartTurn(_currentPlayerTurn);
+       // this.StartTurn(_currentPlayerTurn);
 	}
 
 	public void EndTurn()

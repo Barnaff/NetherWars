@@ -9,6 +9,8 @@ public class GameEngineTester : MonoBehaviour {
 	private IPlayer _player;
 	private IPlayer _opponent;
 
+	private AIPlayerController _AIController;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -107,6 +109,15 @@ public class GameEngineTester : MonoBehaviour {
 			}
 			else
 			{
+				if (_AIController == null)
+				{
+					if (GUILayout.Button("Set Opponent to AI"))
+					{
+						CreateAIController();
+					}
+				}
+
+
 				if (GUILayout.Button("start turn for player"))
 				{
 					_gameManager.SetFirstPlayer(_gameManager.Player);
@@ -134,5 +145,17 @@ public class GameEngineTester : MonoBehaviour {
 		{
 			_gameManager.PlayCard(_gameManager.CurrentPLayerTurn, card);
 		}
+	}
+
+	private void CreateAIController()
+	{
+		GameObject aiControllerContainer = new GameObject();
+		aiControllerContainer.name = "AI Player Controller";
+		_AIController = aiControllerContainer.AddComponent<AIPlayerController>() as AIPlayerController;
+		if (_AIController != null)
+		{
+			_AIController.Init(_gameManager.Opponent, _gameManager);
+		}
+
 	}
 }
