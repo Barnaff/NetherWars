@@ -13,4 +13,6 @@ public interface IResourcePool  {
 
 	int CurrentMana{ get; }
 
+	int NumberOfResourcesPutThisTurn{ get; }
+
 }

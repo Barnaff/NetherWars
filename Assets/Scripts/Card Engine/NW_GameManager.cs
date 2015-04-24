@@ -150,17 +150,35 @@ public class NW_GameManager : IGameManager  {
 
 	public bool CanPlayCard(IPlayer player, NW_Card card)
 	{
-		return true;
+		bool canPlay = false;
+		if (_currentPlayerTurn == player)
+		{
+			if (CanPayForCard(player, card))
+			{
+				canPlay = true;
+			}
+		}
+		return canPlay;
 	}
 
 	public bool CanPayForCard(IPlayer player, NW_Card card)
 	{
-		return true;
+		bool canPay = false;
+		if (player.ResourcePool.CanPayForCard(card))
+		{
+			canPay = true;
+		}
+		return canPay;
 	}
 
 	public bool CanPlayResourceThisTurn(IPlayer player)
 	{
-		return true;
+		bool canPlayResource = false;
+		if (player.ResourcePool.NumberOfResourcesPutThisTurn < 1)
+		{
+			canPlayResource = true;
+		}
+		return canPlayResource;
 	}
 
 	public List<NW_Card> GetValidTargetsForCardAttack(NW_Card card)
