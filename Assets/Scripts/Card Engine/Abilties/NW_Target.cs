@@ -26,4 +26,28 @@ public class NW_Target  {
 	public NW_TargetType Type;
 
 	#endregion
+
+
+	#region Public Helpers
+
+	public bool IsCardMatchTarget(NW_Card card, NW_Card target)
+	{
+		bool isMatched = false;
+		switch (Type)
+		{
+		case NW_TargetType.Self:
+		{
+			if (card == target)
+			{
+				isMatched = true;
+			}
+			break;
+		}
+		}
+
+		return isMatched;
+	}
+
+	#endregion
+
 }

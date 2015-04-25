@@ -53,7 +53,7 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 	
 	public bool CanPayForCard(NW_Card card)
 	{
-		if (_totalMana - _manaUsedThisTurn > card.CastingCost)
+		if (_totalMana - _manaUsedThisTurn >= card.CastingCost)
 		{
 			return true;
 		}

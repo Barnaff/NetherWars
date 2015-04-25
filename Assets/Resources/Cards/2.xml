@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Card xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CardName>Librerian</CardName>
+  <CardId>2</CardId>
+  <CastingCost>1</CastingCost>
+  <Thrashold>U</Thrashold>
+  <CardTypes>
+    <CardType>Creature</CardType>
+  </CardTypes>
+  <CardColors>
+    <CardColor>Blue</CardColor>
+  </CardColors>
+  <Power>1</Power>
+  <Toughness>1</Toughness>
+  <ResourceGain />
+  <Abilities>
+    <Ability>
+      <Type>Triggered</Type>
+      <Trigger>
+        <TriggertType>EnterZone</TriggertType>
+        <FromZone>None</FromZone>
+        <ToZone>Battlefield</ToZone>
+        <Target>
+          <TriggertType>Self</TriggertType>
+        </Target>
+      </Trigger>
+      <Effects>
+        <Effect>
+          <EffectType>DrawCards</EffectType>
+          <Target>
+            <TriggertType>Controller</TriggertType>
+          </Target>
+          <Count>
+            <Type>Fixedvalue</Type>
+            <Value>1</Value>
+          </Count>
+        </Effect>
+      </Effects>
+    </Ability>
+  </Abilities>
+</Card>

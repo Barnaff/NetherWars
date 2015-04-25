@@ -29,4 +29,7 @@ public class NW_Ability  {
 	public List<NW_Effect> Effects;
 
 	#endregion
+
+
+
 }

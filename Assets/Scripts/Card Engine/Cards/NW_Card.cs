@@ -25,6 +25,8 @@ public enum NW_Color
 	Purple,
 }
 
+public delegate void OnAbilityActivatedDelegate(NW_Card card, NW_Ability ability);
+
 [XmlRoot("Card")]
 public class NW_Card  {
 
@@ -81,11 +83,24 @@ public class NW_Card  {
 	public int CurrentPower;
 	[XmlIgnore]
 	public int CurrentToughness;
+	[XmlIgnore]
+	public OnAbilityActivatedDelegate OnAbilityActivated;
 
 	#endregion
 
 
 	#region Public
+
+	public void ActivateCardAbilities(IEventDispatcher eventDispatcher)
+	{
+		foreach (NW_Ability ability in Abilities)
+		{
+			if (ability.Type == NW_AbilityType.Triggered)
+			{
+				RegisterForTriggeredEvents(ability.Trigger, eventDispatcher);
+			}
+		}
+	}
 
 	public void InitCardForBattlefield()
 	{
@@ -96,6 +111,81 @@ public class NW_Card  {
 	public void SetController(IPlayer controller)
 	{
 		Controller = controller;
+	}
+
+	#endregion
+
+
+	#region Public
+	
+	private void RegisterForTriggeredEvents(NW_Trigger trigger, IEventDispatcher eventDispatcher)
+	{
+		switch (trigger.Type)
+		{
+		case NW_TriggerType.DrawCard:
+		{
+			break;
+		}
+		case NW_TriggerType.EnterZone:
+		{
+			Debug.Log("card register for event");
+			eventDispatcher.OnCardChangeZone += CardChangeZoneHandler;
+			break;
+		}
+		case NW_TriggerType.StartOfTurn:
+		{
+			break;
+		}
+		case NW_TriggerType.None:
+		default:
+		{
+			break;
+		}
+		}
+	}
+	
+	#endregion
+	
+	
+	
+	#region Event Handlers
+	
+	private void CardChangeZoneHandler(NW_Card card, NW_Zone fromZone, NW_Zone toZone)
+	{
+		foreach (NW_Ability ability in Abilities)
+		{
+			if (ability.Type == NW_AbilityType.Triggered)
+			{
+				switch (ability.Trigger.Type)
+				{
+				case NW_TriggerType.EnterZone:
+				{
+					if (ability.Trigger.ToZone == toZone.Type && ability.Trigger.Target.IsCardMatchTarget(this, card))
+					{
+						ResolveAbilityEvent(ability);
+					}
+					break;
+				}
+				default:
+				{
+					break;
+				}
+				}
+			}
+		}
+	}
+			    
+	#endregion
+
+
+	#region Resolve Abilities
+
+	private void ResolveAbilityEvent(NW_Ability ability)
+	{
+		if (OnAbilityActivated != null)
+		{
+			OnAbilityActivated(this, ability);
+		}
 	}
 
 	#endregion

@@ -112,6 +112,13 @@ public class NW_GameManager : IGameManager  {
         _player = new NW_Player(playerName, 1, 30, playerDeck) as IPlayer;
         List<NW_Card> opponentDeck = NW_CardsLoader.LoadCardList(opponentCards);
         _opponent = new NW_Player(opponentName, 2, 30, opponentDeck) as IPlayer;
+
+
+		foreach (NW_Card card in _player.Library.Cards)
+		{
+			card.ActivateCardAbilities(EventDispatcher);
+			card.OnAbilityActivated += ResolveAbilityHandler;
+		}
     }
 
 	public void StartGame()
@@ -221,6 +228,40 @@ public class NW_GameManager : IGameManager  {
 	public void Attck(NW_Card source, IPlayer target)
 	{
 
+	}
+
+	#endregion
+
+
+	#region Cards Abilities
+
+	private void ResolveAbilityHandler(NW_Card card, NW_Ability ability)
+	{
+		foreach (NW_Effect effect in ability.Effects)
+		{
+			switch (effect.Type)
+			{
+			case NW_EffectType.DrawCards:
+			{
+				IPlayer player = null;
+				if (effect.Target.Type == NW_TargetType.Controller)
+				{
+					player = card.Controller;
+				}
+				else
+				{
+
+				}
+				int cardsToDraw = effect.Count.Value;
+				player.Draw(cardsToDraw);
+				break;
+			}
+			default:
+			{
+				break;
+			}
+			}
+		}
 	}
 
 	#endregion

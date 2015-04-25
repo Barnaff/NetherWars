@@ -32,4 +32,7 @@ public class NW_Trigger  {
 	public NW_Target Target;
 
 	#endregion
+
+
+
 }
