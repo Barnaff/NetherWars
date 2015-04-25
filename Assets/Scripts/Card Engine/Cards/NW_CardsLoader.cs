@@ -30,7 +30,7 @@ public class NW_CardsLoader  {
 				cards.Add(card);
 			}
 		}
-		return cards;
+		return cards; 
 	}
 	
 	

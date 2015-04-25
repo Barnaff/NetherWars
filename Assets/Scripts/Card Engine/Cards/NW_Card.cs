@@ -66,6 +66,10 @@ public class NW_Card  {
 	[XmlArrayItem("ResourceColor")]
 	public List<NW_Color> ResourceGain;
 
+	[XmlArray("Abilities")]
+	[XmlArrayItem("Ability")]
+	public List<NW_Ability> Abilities;
+
 	#endregion
 
 
