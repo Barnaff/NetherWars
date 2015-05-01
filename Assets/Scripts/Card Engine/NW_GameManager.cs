@@ -116,7 +116,7 @@ public class NW_GameManager : IGameManager  {
 
 		foreach (NW_Card card in _player.Library.Cards)
 		{
-			card.ActivateCardAbilities(EventDispatcher);
+			card.ActivateCard(EventDispatcher);
 			card.OnAbilityActivated += ResolveAbilityHandler;
 		}
     }

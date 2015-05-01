@@ -78,7 +78,7 @@ public class NW_EventDispatcher : IEventDispatcher  {
         {
             NW_Zone fromZone = (NW_Zone)eventObject.Data[NW_Event.NW_EVENT_KEY_FROM_ZONE];
             NW_Zone toZone = (NW_Zone)eventObject.Data[NW_Event.NW_EVENT_KEY_TO_ZONE];
-            OnCardAttemptToChangeZone(eventObject.Card, fromZone, toZone);
+            CardAttemptToChangeZone(eventObject.Card, fromZone, toZone);
             break;
         }
 		default:
@@ -133,5 +133,13 @@ public class NW_EventDispatcher : IEventDispatcher  {
 		}
 	}
 
-	#endregion
+    private void CardAttemptToChangeZone(NW_Card card, NW_Zone fromZone, NW_Zone toZone)
+    {
+        if (OnCardAttemptToChangeZone != null)
+        {
+            OnCardAttemptToChangeZone(card, fromZone, toZone);
+        }
+    }
+
+    #endregion
 }

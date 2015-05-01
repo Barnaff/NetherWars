@@ -26,7 +26,6 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 
 	public override void AddCard (NW_Card card)
 	{
-		Debug.Log("add card to resource: " + card.CardName);
 		base.AddCard (card);
 		UpdateResourcePool();
 		_totalMana++;
@@ -103,7 +102,6 @@ public class NW_ResourcePool : NW_Zone, IResourcePool {
 		{
 			foreach (NW_Color color in card.CardColors)
 			{
-				Debug.Log("add color: " + color.ToString() + " to resources thrashold");
 				if (_thrasholdCount.Contains(color))
 				{
 					_thrasholdCount[color] = (int)_thrasholdCount[color] + 1;
